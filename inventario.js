@@ -57,30 +57,22 @@ export class Inventario {
     }
 
     eliminar(codigo){
-        if(this.primero.codigo == codigo){
+        if(!this.primero){
+            return null;
+        }else if(this.primero.codigo == codigo){
             this.primero = this.primero.next;
             return true;
         }else{
             let aux = this.primero;
-            while(aux.next.codigo != codigo){
+            while(aux.next != null && aux.next.codigo != codigo){
                 aux = aux.next;
             }
-            aux.next = aux.next.next;
-            return true;
-        }
-        return false;
-    }
-
-    insertar(nuevo, posicion){
-        if(posicion == 1){
-            this.agregarInicio(nuevo);
-        }else{
-            let aux = this.primero;
-            for(let i = 0; i < posicion - 2; i++){
-                aux = aux.next;
+            if(aux.next == null){
+                return false;
+            }else{
+                aux.next = aux.next.next;
+                return true;
             }
-            nuevo.next = aux.next;
-            aux.next = nuevo;
         }
     }
     

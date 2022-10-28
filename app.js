@@ -72,23 +72,6 @@ document.getElementById('producto-m').addEventListener('submit', function(e){
         e.preventDefault();
 });
 
-document.getElementById('producto-insert').addEventListener('submit', function(e){
-        const codigo = document.getElementById('codigoI').value;
-        const nombre = document.getElementById('nombreI').value;
-        const precio = document.getElementById('precioI').value;
-        const cantidad = document.getElementById('cantidadI').value;
-        const posicion = document.getElementById('posicionI').value;
-        
-        const nuevo = new Producto(codigo, nombre, precio, cantidad);
-
-        invt.insertar(nuevo,posicion);
-        let element = invt.verInvt();
-        let listaProducto = document.getElementById('product-list');
-        listaProducto.innerHTML = element;
-       
-        e.preventDefault();
-});
-
 document.getElementById('producto-in').addEventListener('submit', function(e){  
         let element = invt.invertir();
         let listaProducto = document.getElementById('product-list');
