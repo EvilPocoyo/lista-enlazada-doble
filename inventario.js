@@ -23,16 +23,22 @@ export class Inventario {
     }
 
     agregar(nuevo){
+        let aux = this.primero;
+
         if(this.primero == null){
             this.primero = nuevo;
+        }else if(nuevo.codigo < this.primero.codigo){
+            nuevo.next = aux;
+            aux.previous = nuevo;
+            this.primero = nuevo;
         }else{
-            let aux = this.primero;
-            while(aux.next != null){
+            while(aux.next != null && aux.next.codigo < nuevo.codigo){
                 aux = aux.next;
-                
             }
+            nuevo.next = aux.next;
             aux.next = nuevo;
-        }
+        } 
+        
     }
     
     buscar(codigo) {
@@ -47,12 +53,6 @@ export class Inventario {
                 aux = aux.next;
             }
             return false;
-        }
-    }
-
-    eliminarEn(){
-        if(!this.primero){
-            return null;
         }
     }
 
